@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Arima', ui-serif, Georgia, serif;
+  color: #3E3832;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+/* Warm beige atmosphere with soft light pools + grain, shared by every screen */
+.atmosphere {
+  position: relative;
+  min-height: 100dvh;
+  width: 100%;
+  background:
+    radial-gradient(ellipse 60% 45% at 18% 12%, rgba(255,255,255,0.55), transparent 60%),
+    radial-gradient(ellipse 55% 50% at 85% 20%, rgba(255, 248, 235, 0.5), transparent 60%),
+    radial-gradient(ellipse 70% 60% at 50% 100%, rgba(139, 121, 104, 0.25), transparent 65%),
+    linear-gradient(160deg, #E6D9C7 0%, #D8C9B7 45%, #CBB9A3 100%);
+  overflow: hidden;
+}
+
+.atmosphere::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Core glass surface, reused with different opacity/blur intensities */
+.glass {
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  box-shadow: 0 20px 60px rgba(80, 60, 40, 0.15), inset 0 1px 1px rgba(255,255,255,0.6);
+}
+
+.glass-soft {
+  background: rgba(255, 255, 255, 0.30);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+}
+
+.glass-dim {
+  background: rgba(139, 121, 104, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+}
+
+::selection {
+  background: rgba(139, 121, 104, 0.35);
+}
+
+/* Scrollbars: thin, unobtrusive, on-theme */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139,121,104,0.35) transparent;
+}
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(139,121,104,0.3);
+  border-radius: 999px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+button, input, textarea {
+  font-family: inherit;
+}
+
+button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visible {
+  outline: 2px solid rgba(139, 121, 104, 0.55);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
