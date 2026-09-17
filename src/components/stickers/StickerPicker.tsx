@@ -16,7 +16,7 @@ export default function StickerPicker({ onPick, onClose }: StickerPickerProps) {
       <div className="fixed inset-0 z-30" onClick={onClose} />
       <GlassCard
         rounded="glass"
-        className="absolute bottom-full left-0 z-40 mb-3 w-[280px] animate-pop-in origin-bottom-left p-4 sm:w-[320px]"
+        className="absolute bottom-full right-0 z-40 mb-3 w-[280px] animate-pop-in origin-bottom-right p-4 sm:w-[320px]"
       >
         <div className="grid grid-cols-4 gap-2">
           {category.stickers.map((sticker) => (
