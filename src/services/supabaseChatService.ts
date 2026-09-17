@@ -147,6 +147,7 @@ export const supabaseChatService: ChatService = {
 
   async rejoinRoom(roomId: string, participantId: string) {
     const db = requireClient()
+    await getSupabaseSessionId()
     const { data, error } = await db.from('participants').select().eq('id', participantId).eq('room_id', roomId).maybeSingle()
     if (error) throw error
     return data ? participantFromRow(data) : null
